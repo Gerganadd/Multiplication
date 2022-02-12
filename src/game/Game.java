@@ -10,6 +10,9 @@ import java.util.Map;
 import javax.swing.*;
 
 import constants.GameConstants;
+import game_components.Level;
+import game_components.Player;
+import game_components.Task;
 import listeners.GameListener;
 import parser.Parser;
 import windows.*;

@@ -13,8 +13,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import game.Coordinate;
-import game.Level;
+import game_components.Coordinate;
+import game_components.Level;
 
 public class Parser 
 {	

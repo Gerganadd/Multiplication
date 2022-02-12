@@ -1,4 +1,4 @@
-package game;
+package game_components;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -10,6 +10,7 @@ import javax.swing.*;
 
 import constants.GameConstants;
 import constants.ViewConstants;
+import game.Game;
 
 public class Task extends JDialog // to-do : make better design
 {	

@@ -3,7 +3,7 @@ package tests;
 
 import java.util.List;
 
-import game.Level;
+import game_components.Level;
 import parser.Parser;
 
 public class TestParser {

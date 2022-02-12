@@ -1,7 +1,7 @@
 package tests;
 
 
-import game.Task;
+import game_components.Task;
 
 public class TestTask {
 

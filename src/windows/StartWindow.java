@@ -11,6 +11,7 @@ import javax.swing.*;
 
 import constants.ViewConstants;
 import game.*;
+import game_components.Player;
 
 public class StartWindow extends JPanel
 {

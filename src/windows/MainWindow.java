@@ -13,9 +13,9 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import constants.ViewConstants;
-import game.Coordinate;
 import game.Game;
-import game.Level;
+import game_components.Coordinate;
+import game_components.Level;
 
 public class MainWindow extends JPanel
 {
