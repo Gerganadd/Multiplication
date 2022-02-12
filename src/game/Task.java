@@ -71,9 +71,7 @@ public class Task extends JDialog // to-do : make better design
 		
 		if	((firstN * secondN) == result)
 		{
-			
-			//to-do: change MainWindow
-			Game.getInstance().generateTask();
+			Game.getInstance().generateNewTask();
 			
 			this.dispose();
 		}

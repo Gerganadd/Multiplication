@@ -4,11 +4,14 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.LayoutManager;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.*;
 
 import constants.GameConstants;
 import listeners.GameListener;
+import parser.Parser;
 import windows.*;
 
 public class Game implements GameListener
@@ -17,10 +20,15 @@ public class Game implements GameListener
 
 	private static Game game = null;
 	
+	private static List<Level> levels = Parser.levels("src/resources/levels.xml");
+	//to-do : add path into GameConstants
+	
 	private Player player;
+	private JPanel mainWindow = null; // or gameWindow
 	private JFrame window;
 	
-	private int index = 0;
+	private int currentLevelIndex = 0;
+	private int currentTaskIndex = 0;
 	
 	private Game()
 	{
@@ -38,6 +46,11 @@ public class Game implements GameListener
 		return game;
 	}
 	
+	public int getTaskIndex()
+	{
+		return currentTaskIndex;
+	}
+	
 	public static void setSize(Component c, Dimension d)
 	{
 		c.setSize(d);
@@ -46,6 +59,7 @@ public class Game implements GameListener
 		c.setMaximumSize(d);
 	}
 	
+	@Override
 	public void start()
 	{
 		window.setVisible(true);
@@ -70,7 +84,9 @@ public class Game implements GameListener
 	public void openGame() 
 	{
 		window.getContentPane().removeAll();
-		window.add(new MainWindow(player));
+		
+		this.mainWindow = new MainWindow(levels.get(currentLevelIndex));
+		window.add(mainWindow);
 		
 		window.pack();
 		window.repaint();
@@ -78,20 +94,30 @@ public class Game implements GameListener
 		generateTask();
 	}
 	
-	public void generateTask()
+	private void generateTask()
 	{
-		if (index < GameConstants.GAME_QUESTIONS)
+		if (currentTaskIndex <= GameConstants.GAME_QUESTIONS) 
 		{
-			int n = index + 1;
-			Task t = new Task("Задача №" + n);
-			index++;
+			if (currentTaskIndex < GameConstants.GAME_QUESTIONS)
+			{
+				int n = currentTaskIndex + 1;
+				Task t = new Task("Задача №" + n);
+			}
+			change();
+			currentTaskIndex++;
 		}
 		else
 		{
+			if (currentLevelIndex < levels.size())
+			{
+				//++currentLevelIndex;
+				//openGame();
+			}
 			end();
 		}
 	}
 
+	@Override
 	public void end() 
 	{
 		System.out.println("congratulations!!!");
@@ -100,12 +126,13 @@ public class Game implements GameListener
 	@Override
 	public void change() 
 	{
-		
+		this.mainWindow.repaint();
 	}
 
 	@Override
-	public void generateNewTask() {
-		// TODO Auto-generated method stub
+	public void generateNewTask() 
+	{
+		generateTask();
 		
 	}
 }

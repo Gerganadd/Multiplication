@@ -9,12 +9,15 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import constants.ViewConstants;
+import game.Coordinate;
 import game.Game;
+import game.Level;
 import game.Player;
 import game.Point;
 import parser.Parser;
@@ -22,11 +25,17 @@ import parser.Parser;
 public class MainWindow extends JPanel //to-do: design 
 {
 	private final LayoutManager LAYOUT = new BoxLayout(this, BoxLayout.Y_AXIS);
+	private final Color DEFAULT_COLOR = Color.GRAY;
+	private final Color TEXT_COLOR = Color.BLACK;
+	private final Color CURRECT_ANSWEARED_COLOR = Color.GREEN;
 
 	private Graphics2D g;
-	private String picturePath = "src/resources/tree1.png";
-	private String path = "src/resources/gameMap1.txt";
 	private BufferedImage image;
+	
+	private String picturePath = "src/resources/level_1_background.png";
+	private String path = "src/resources/gameMap1.txt";
+	
+	private Level level;
 	
 	public MainWindow(Player player)
 	{
@@ -37,15 +46,36 @@ public class MainWindow extends JPanel //to-do: design
 		{
 			JPanel pnlReward = new JPanel();
 			pnlReward.setLayout(new BoxLayout(pnlReward, BoxLayout.X_AXIS));
-			//pnlReward.setBackground(Color.black);
+			
 			image = ImageIO.read(new File(picturePath));
+			
 		} 
 		catch (IOException e) 
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	public MainWindow(Level level)
+	{
+		super();
+		configurate();
 		
-		this.repaint();
+		if (level != null)
+			this.level = level;
+		
+		try 
+		{
+			JPanel pnlReward = new JPanel();
+			pnlReward.setLayout(new BoxLayout(pnlReward, BoxLayout.X_AXIS));
+			
+			image = ImageIO.read(new File(picturePath));
+			
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
@@ -59,32 +89,36 @@ public class MainWindow extends JPanel //to-do: design
             this.g.drawImage(image, 0, 0, this);
         }
         
-        List<Point> points = Parser.parseGamePath1(path);
-        for(Point p : points)
-        {
-        	drawTask(p);
-        }
-        
+        level.getCordinates().forEach((k, v) -> drawTask(k));
+       
         this.g.dispose();
+        
     }
 	
-	private void drawTask(Point p)
+	private void drawTask(int key)
 	{
-		g.setColor(Color.GRAY);
-		g.drawOval(p.getX(), p.getY(), Point.pixels, Point.pixels);
-		g.fillOval(p.getX(), p.getY(), Point.pixels, Point.pixels);
+		int lastCurrectTask = Game.getInstance().getTaskIndex();
 		
-		g.setColor(Color.BLACK);
-	
-		//g.setFont(new Font("TimesRoman", Font.PLAIN, 20)); 
-		//System.out.println(g.getFontMetrics().getHeight());
-		g.drawString(p.getLevelNumber(),(int) (p.getX() + Point.pixels * 0.4),(int) (p.getY() + Point.pixels * 0.6));
+		if (key < lastCurrectTask)
+		{
+			g.setColor(CURRECT_ANSWEARED_COLOR);
+		}
+		else
+		{
+			g.setColor(DEFAULT_COLOR);
+		}
 		
-	}
-	
-	private void change()
-	{
+		Coordinate c = level.getCordinates().get(key);
 		
+		g.drawOval(c.getX(), c.getY(), level.getTaskPixels(), level.getTaskPixels());
+		g.fillOval(c.getX(), c.getY(), level.getTaskPixels(), level.getTaskPixels());
+		
+		g.setColor(TEXT_COLOR);
+		String taskNumber = key + "";
+		g.drawString(
+				taskNumber,
+				(int) (c.getX() + level.getTaskPixels() * 0.4),
+				(int) (c.getY() + level.getTaskPixels() * 0.6));
 	}
 	
 	private void configurate() 
