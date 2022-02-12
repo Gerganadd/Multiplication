@@ -2,27 +2,27 @@ package game;
 
 public class Coordinate 
 {
-	private int row;
-	private int col;
+	private int x;
+	private int y;
 	
-	public Coordinate(int row, int col)
+	public Coordinate(int x, int y)
 	{
-		this.row = row;
-		this.col = col;
+		this.x = x;
+		this.y = y;
 	}
 	
-	public int getRow()
+	public int getX()
 	{
-		return this.row;
+		return this.x;
 	}
 	
-	public int getCol()
+	public int getY()
 	{
-		return this.col;
+		return this.y;
 	}
 	
 	public String toString()
 	{
-		return String.format("[%d;%d]", getRow(), getCol());
+		return String.format("[%d;%d]", getX(), getY());
 	}
 }
