@@ -1,0 +1,21 @@
+<levels>
+	<level>
+		<background>src/resources/level_1_background.png</background>
+		
+		<pixels>45</pixels>
+		
+		<coordinates>
+			<coordinate task="1" x="251" y="500"/>
+			<coordinate task="2" x="149" y="466"/>
+			<coordinate task="3" x="70" y="440"/>
+			<coordinate task="4" x="154" y="375"/>
+			<coordinate task="5" x="244" y="360"/>
+			<coordinate task="6" x="339" y="300"/>
+			<coordinate task="7" x="253" y="269"/>
+			<coordinate task="8" x="162" y="221"/>
+			<coordinate task="9" x="339" y="124"/>
+			<coordinate task="10" x="190" y="24"/>
+		</coordinates>
+	</level>
+
+</levels>
