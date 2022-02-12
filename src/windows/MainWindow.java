@@ -1,15 +1,13 @@
 package windows;
 
 import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.LayoutManager;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -18,43 +16,13 @@ import constants.ViewConstants;
 import game.Coordinate;
 import game.Game;
 import game.Level;
-import game.Player;
-import game.Point;
-import parser.Parser;
 
-public class MainWindow extends JPanel //to-do: design 
+public class MainWindow extends JPanel
 {
-	private final LayoutManager LAYOUT = new BoxLayout(this, BoxLayout.Y_AXIS);
-	private final Color DEFAULT_COLOR = Color.GRAY;
-	private final Color TEXT_COLOR = Color.BLACK;
-	private final Color CURRECT_ANSWEARED_COLOR = Color.GREEN;
-
 	private Graphics2D g;
 	private BufferedImage image;
 	
-	private String picturePath = "src/resources/level_1_background.png";
-	private String path = "src/resources/gameMap1.txt";
-	
 	private Level level;
-	
-	public MainWindow(Player player)
-	{
-		super();
-		configurate();
-		
-		try 
-		{
-			JPanel pnlReward = new JPanel();
-			pnlReward.setLayout(new BoxLayout(pnlReward, BoxLayout.X_AXIS));
-			
-			image = ImageIO.read(new File(picturePath));
-			
-		} 
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
-	}
 	
 	public MainWindow(Level level)
 	{
@@ -69,7 +37,7 @@ public class MainWindow extends JPanel //to-do: design
 			JPanel pnlReward = new JPanel();
 			pnlReward.setLayout(new BoxLayout(pnlReward, BoxLayout.X_AXIS));
 			
-			image = ImageIO.read(new File(picturePath));
+			image = ImageIO.read(new File(level.getBackgroundPicturePath()));
 			
 		} 
 		catch (IOException e) 
@@ -101,11 +69,11 @@ public class MainWindow extends JPanel //to-do: design
 		
 		if (key < lastCurrectTask)
 		{
-			g.setColor(CURRECT_ANSWEARED_COLOR);
+			g.setColor(ViewConstants.MAIN_WINDOW_CURRECT_ANSWEARED_COLOR);
 		}
 		else
 		{
-			g.setColor(DEFAULT_COLOR);
+			g.setColor(ViewConstants.MAIN_WINDOW_DEFAULT_COLOR);
 		}
 		
 		Coordinate c = level.getCordinates().get(key);
@@ -113,7 +81,7 @@ public class MainWindow extends JPanel //to-do: design
 		g.drawOval(c.getX(), c.getY(), level.getTaskPixels(), level.getTaskPixels());
 		g.fillOval(c.getX(), c.getY(), level.getTaskPixels(), level.getTaskPixels());
 		
-		g.setColor(TEXT_COLOR);
+		g.setColor(ViewConstants.MAIN_WINDOW_TEXT_COLOR);
 		String taskNumber = key + "";
 		g.drawString(
 				taskNumber,
@@ -123,9 +91,9 @@ public class MainWindow extends JPanel //to-do: design
 	
 	private void configurate() 
 	{
-		this.setVisible(true);
 		// to-do : da ne moje da se orazmerqva
-		this.setLayout(LAYOUT);
+		this.setVisible(true);
+		this.setLayout(ViewConstants.LAYOUT);
 		
 		Game.setSize(this, ViewConstants.D_GAME_WINDOW);
 	}
