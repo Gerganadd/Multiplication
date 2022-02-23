@@ -1,6 +1,8 @@
 <levels>
 	<level>
 		<background>src/resources/level_1_background.png</background>
+		<element>src/resources/mushroom.png</element>
+		<cup>src/resources/trophy1.png</cup>
 		
 		<pixels>45</pixels>
 		
@@ -14,7 +16,27 @@
 			<coordinate task="7" x="253" y="269"/>
 			<coordinate task="8" x="162" y="221"/>
 			<coordinate task="9" x="339" y="124"/>
-			<coordinate task="10" x="190" y="24"/>
+			<coordinate task="10" x="177" y="24"/>
+		</coordinates>
+	</level>
+	<level>
+		<background>src/resources/level_2_background.png</background>
+		<element>src/resources/rose.png</element>
+		<cup>src/resources/trophy1.png</cup>
+		
+		<pixels>45</pixels>
+		
+		<coordinates>
+			<coordinate task="1" x="135" y="383"/>
+			<coordinate task="2" x="172" y="364"/>
+			<coordinate task="3" x="207" y="344"/>
+			<coordinate task="4" x="242" y="323"/>
+			<coordinate task="5" x="277" y="304"/>
+			<coordinate task="6" x="315" y="283"/>
+			<coordinate task="7" x="355" y="261"/>
+			<coordinate task="8" x="395" y="240"/>
+			<coordinate task="9" x="435" y="218"/>
+			<coordinate task="10" x="500" y="176"/>
 		</coordinates>
 	</level>
 

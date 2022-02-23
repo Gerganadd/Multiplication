@@ -4,12 +4,14 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.LayoutManager;
+import java.awt.Toolkit;
 import java.util.List;
 import java.util.Map;
 
 import javax.swing.*;
 
 import constants.GameConstants;
+import constants.ViewConstants;
 import game_components.Level;
 import game_components.Player;
 import game_components.Task;
@@ -38,6 +40,7 @@ public class Game implements GameListener
 		window = new JFrame();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setLayout(LAYOUT);
+		//window.setResizable(false);
 	}
 	
 	public static Game getInstance()
@@ -65,12 +68,18 @@ public class Game implements GameListener
 	@Override
 	public void start()
 	{
-		window.setVisible(true);
-		
 		window.add(new InitializeWindow());
 		
 		window.pack();
 		window.repaint();
+		
+		int x = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - window.size().getWidth()) / 2;
+		int y = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - window.size().getHeight()) / 2;
+		
+		//window.setLocation(x, y);
+		
+		window.setVisible(true);
+
 	}
 
 	public void setPlayer(Player player) 
@@ -84,8 +93,15 @@ public class Game implements GameListener
 		window.repaint();
 	}
 	
+	public Player getPlayer()
+	{
+		return this.player;
+	}
+	
 	public void openGame() 
 	{
+		//this.player = new Player("Ema", GameConstants.GIRL_LEFT_PICTURE_PATH); //to-do remove
+
 		window.getContentPane().removeAll();
 		
 		this.mainWindow = new MainWindow(levels.get(currentLevelIndex));
@@ -94,27 +110,37 @@ public class Game implements GameListener
 		window.pack();
 		window.repaint();
 		
+		int x = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - window.size().getWidth()) / 2;
+		int y = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - window.size().getHeight()) / 2;
+		
+		//window.setLocation(x, y);
+		
+		window.setVisible(true);
+		
 		generateTask();
 	}
 	
-	private void generateTask()
+	private void generateTask() // to-do: fix bugs
 	{
 		if (currentTaskIndex <= GameConstants.GAME_QUESTIONS) 
 		{
 			if (currentTaskIndex < GameConstants.GAME_QUESTIONS)
 			{
 				int n = currentTaskIndex + 1;
-				Task t = new Task("Задача №" + n);
+				Task t = new Task(ViewConstants.TASK_TITLE + n);
 			}
 			change();
 			currentTaskIndex++;
+			//System.out.println("task : " + currentTaskIndex);
 		}
-		else
+		if (currentTaskIndex == GameConstants.GAME_QUESTIONS)
 		{
+			//System.out.println("level " + currentLevelIndex);
 			if (currentLevelIndex < levels.size())
 			{
-				//++currentLevelIndex;
-				//openGame();
+				++currentLevelIndex;
+				//change player picture if it's necessary
+				openGame();
 			}
 			end();
 		}
@@ -136,6 +162,10 @@ public class Game implements GameListener
 	public void generateNewTask() 
 	{
 		generateTask();
-		
+	}
+	
+	public Level getCurrentLevel()
+	{
+		return levels.get(currentLevelIndex);
 	}
 }

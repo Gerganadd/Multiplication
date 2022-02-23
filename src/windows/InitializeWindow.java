@@ -10,14 +10,15 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import constants.GameConstants;
 import constants.ViewConstants;
 import game.*;
 import game_components.Player;
 
 public class InitializeWindow extends JPanel 
 {	
-	private String girlPicturePath = "src/resources/child-girl.png";
-	private String boyPicturePath = "src/resources/child-boy.png";
+	private String girlPicturePath = GameConstants.GIRL_RIGHT_PICTURE_PATH;
+	private String boyPicturePath = GameConstants.BOY_LEFT_PICTURE_PATH;
 	
 	private boolean isGirlPicClicked = false;
 	private boolean isBoyPicClicked = false;

@@ -14,6 +14,7 @@ public class ViewConstants
 	//Task
 	public static final Dimension D_TASK = new Dimension(60, 70);
 	public static final Dimension D_TASK_TXT_ANSWEAR = new Dimension(30, 20);
+	public static final String TASK_TITLE = "Задача №";
 	
 	//InitializeWindow
 	public static final Dimension D_INFORMATION_WINDOW = new Dimension(320, 250); // same as a StartWindow 
@@ -40,8 +41,10 @@ public class ViewConstants
 	
 	//all
 	public static final Color BACKGROUND = null;
-	public static final Dimension D_GAME_WINDOW = new Dimension(428, 645);
 	public static final LayoutManager LAYOUT = new FlowLayout();
+	
+	//public static final boolean LEFT_TO_RIGHT = true;
+	//public static final boolean RIGHT_TO_LEFT = !LEFT_TO_RIGHT;
 	
 	
 }

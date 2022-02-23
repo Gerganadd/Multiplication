@@ -5,25 +5,52 @@ import java.util.Map;
 public class Level
 {
 	private String backgroundPicturePath;
-	private int taskPixels;
-	private Map<Integer, Coordinate> tasksCoordinates;
+	private String elementPicturePath;
+	private String defaultElementPicturePath;
+	private String cupPicturePath;
+
+	private boolean playerPictureOrientation;
 	
-	public Level(String backgroundPicturePath, int taskPixels, Map<Integer, Coordinate> tasksCoordinates)
+	private Map<Integer, Coordinate> tasksCoordinates;
+	private Coordinate playerCoordinates;
+	
+	
+	public Level(String backgroundPicturePath, String elementPicturePath, String defaultElementPicturePath,
+			String cupPicturePath, Coordinate playerCoordinates, 
+			boolean playerPictureOrientation, Map<Integer, Coordinate> tasksCoordinates)
 	{
 		if (backgroundPicturePath != null && !backgroundPicturePath.isBlank())
 		{
 			this.backgroundPicturePath = backgroundPicturePath;
 		}
 		
-		if (taskPixels > 0)
+		if (elementPicturePath != null && !elementPicturePath.isBlank())
 		{
-			this.taskPixels = taskPixels;
+			this.elementPicturePath = elementPicturePath;
 		}
 		
-		if(tasksCoordinates != null)
+		if (defaultElementPicturePath != null && !defaultElementPicturePath.isBlank())
+		{
+			this.defaultElementPicturePath = defaultElementPicturePath;
+		}
+		
+		if (cupPicturePath != null && !cupPicturePath.isBlank())
+		{
+			this.cupPicturePath = cupPicturePath;
+		}
+		
+		if (playerCoordinates != null)
+		{
+			this.playerCoordinates = playerCoordinates;
+		}
+		
+		this.playerPictureOrientation = playerPictureOrientation;
+		
+		if (tasksCoordinates != null)
 		{
 			this.tasksCoordinates = tasksCoordinates;
 		}
+	
 	}
 	
 	public String getBackgroundPicturePath()
@@ -31,13 +58,33 @@ public class Level
 		return this.backgroundPicturePath;
 	}
 	
-	public int getTaskPixels()
+	public String getElementPicturePath()
 	{
-		return this.taskPixels;
+		return this.elementPicturePath;
+	}
+	
+	public String getDefaultElementPicturePath()
+	{
+		return this.defaultElementPicturePath;
+	}
+	
+	public String getCupPicturePath()
+	{
+		return this.cupPicturePath;
 	}
 	
 	public Map<Integer, Coordinate> getCordinates()
 	{
 		return this.tasksCoordinates;
+	}
+	
+	public Coordinate getPlayerCoordinates()
+	{
+		return this.playerCoordinates;
+	}
+	
+	public boolean getPlayerPictureOrientation()
+	{
+		return this.playerPictureOrientation;
 	}
 }

@@ -1,10 +1,10 @@
 package windows;
 
-import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.LayoutManager;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -12,15 +12,20 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import constants.GameConstants;
 import constants.ViewConstants;
 import game.Game;
 import game_components.Coordinate;
 import game_components.Level;
+import game_components.Player;
 
 public class MainWindow extends JPanel
 {
 	private Graphics2D g;
-	private BufferedImage image;
+	private BufferedImage backgroundImage;
+	private BufferedImage elementImage;
+	private BufferedImage defaultElementImage;
+	private BufferedImage cupImage;
 	
 	private Level level;
 	
@@ -37,7 +42,23 @@ public class MainWindow extends JPanel
 			JPanel pnlReward = new JPanel();
 			pnlReward.setLayout(new BoxLayout(pnlReward, BoxLayout.X_AXIS));
 			
-			image = ImageIO.read(new File(level.getBackgroundPicturePath()));
+			backgroundImage = ImageIO.read(new File(level.getBackgroundPicturePath()));
+			elementImage = ImageIO.read(new File(level.getElementPicturePath()));
+			defaultElementImage = ImageIO.read(new File(level.getDefaultElementPicturePath()));
+			cupImage = ImageIO.read(new File(level.getCupPicturePath()));
+			
+			Dimension d = new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight());
+			Game.setSize(this, d);
+			
+			//to-do: remove mouseListener
+			this.addMouseListener(new MouseAdapter()
+			{
+				@Override
+				public void mouseClicked(MouseEvent arg0) 
+				{
+					System.out.println(arg0.getLocationOnScreen());
+				}
+			});
 			
 		} 
 		catch (IOException e) 
@@ -52,50 +73,52 @@ public class MainWindow extends JPanel
         super.paintComponent(g);
         this.g = (Graphics2D) g.create();
         
-        if (image != null)
+        if (backgroundImage != null)
         {
-            this.g.drawImage(image, 0, 0, this);
+            this.g.drawImage(backgroundImage, 0, 0, this);
         }
         
-        level.getCordinates().forEach((k, v) -> drawTask(k));
-       
+        if (elementImage != null && cupImage != null && defaultElementImage != null)
+        {
+        	level.getCordinates().forEach((k, v) -> drawElement(k));
+        }
+        
+        BufferedImage playerImage = Game.getInstance().getPlayer().getPicture();
+        
+        if (playerImage != null)
+        {
+        	this.g.drawImage(playerImage, level.getPlayerCoordinates().getX(), level.getPlayerCoordinates().getY(), this);
+        }
+        
         this.g.dispose();
         
     }
 	
-	private void drawTask(int key)
+	private void drawElement(int key)
 	{
-		int lastCurrectTask = Game.getInstance().getTaskIndex();
+		Coordinate c = level.getCordinates().get(key);
 		
-		if (key < lastCurrectTask)
+		if (key == level.getCordinates().size())
 		{
-			g.setColor(ViewConstants.MAIN_WINDOW_CURRECT_ANSWEARED_COLOR);
+			this.g.drawImage(cupImage, c.getX(), c.getY(), this);
 		}
 		else
 		{
-			g.setColor(ViewConstants.MAIN_WINDOW_DEFAULT_COLOR);
+			if (key < Game.getInstance().getTaskIndex())
+			{
+				this.g.drawImage(elementImage, c.getX(), c.getY(), this);
+			}
+			else
+			{
+				this.g.drawImage(defaultElementImage, c.getX(), c.getY(), this); 
+			}
 		}
-		
-		Coordinate c = level.getCordinates().get(key);
-		
-		g.drawOval(c.getX(), c.getY(), level.getTaskPixels(), level.getTaskPixels());
-		g.fillOval(c.getX(), c.getY(), level.getTaskPixels(), level.getTaskPixels());
-		
-		g.setColor(ViewConstants.MAIN_WINDOW_TEXT_COLOR);
-		String taskNumber = key + "";
-		g.drawString(
-				taskNumber,
-				(int) (c.getX() + level.getTaskPixels() * 0.4),
-				(int) (c.getY() + level.getTaskPixels() * 0.6));
 	}
 	
 	private void configurate() 
 	{
-		// to-do : da ne moje da se orazmerqva
 		this.setVisible(true);
 		this.setLayout(ViewConstants.LAYOUT);
-		
-		Game.setSize(this, ViewConstants.D_GAME_WINDOW);
 	}
 
 }

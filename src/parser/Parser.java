@@ -30,6 +30,8 @@ public class Parser
 	        doc.getDocumentElement().normalize();
 	        
 	        NodeList nList = doc.getElementsByTagName("level");
+	        Element el = (Element) nList.item(0);
+	        boolean playerPictureOrientation = el.getAttribute("playerPictureOrientation").contains("left");
 	        
 	        for (int temp = 0; temp < nList.getLength(); temp++)
 	        {
@@ -44,14 +46,31 @@ public class Parser
 			                .item(0)
 			                .getTextContent()
 			                .trim();
-		             
-		            int pixels = Integer.parseInt(
-		            		eCategory
-		 	                .getElementsByTagName("pixels")
+		            
+		            String elementPicturePath = eCategory
+			                .getElementsByTagName("element")
 			                .item(0)
 			                .getTextContent()
-			                .trim());
-		               
+			                .trim();
+		            
+		            String defaultElementPicturePath = eCategory
+			                .getElementsByTagName("defaultElement")
+			                .item(0)
+			                .getTextContent()
+			                .trim();
+		            
+		            String cupPicturePath = eCategory
+		            		.getElementsByTagName("cup")
+			                .item(0)
+			                .getTextContent()
+			                .trim();
+		            
+		            Element ePlayer = (Element) eCategory.getElementsByTagName("playerCoordinates").item(0);
+		            int xPlayer = Integer.parseInt(ePlayer.getAttribute("x"));
+		            int yPlayer = Integer.parseInt(ePlayer.getAttribute("y"));
+		            
+		            Coordinate playerCoordinates = new Coordinate(xPlayer, yPlayer);
+		            
 		            NodeList coordinates = eCategory.getElementsByTagName("coordinate");
 		            
 		            Map<Integer, Coordinate> tasksCoordinates = new HashMap<>();
@@ -74,7 +93,8 @@ public class Parser
 		            	}
 		            }
 		            
-		            levels.add(new Level(backgroundPicturePath, pixels, tasksCoordinates));
+		            levels.add(new Level(backgroundPicturePath, elementPicturePath, defaultElementPicturePath,
+		            			cupPicturePath, playerCoordinates, playerPictureOrientation, tasksCoordinates));
 		        }
 	        }
 		}

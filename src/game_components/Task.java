@@ -1,6 +1,5 @@
 package game_components;
 
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -23,6 +22,7 @@ public class Task extends JDialog // to-do : make better design
 		this.setVisible(true);
 		this.setTitle(title);
 		this.setLayout(new FlowLayout(FlowLayout.CENTER));
+		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // or Hide on close
 		
 		Random rand = new Random();
@@ -68,17 +68,24 @@ public class Task extends JDialog // to-do : make better design
 		if (txtAnswear.getText() == null || txtAnswear.getText().isBlank())
 			throw new IllegalArgumentException("Input result");
 		
-		int result = Integer.parseInt(txtAnswear.getText());
-		
-		if	((firstN * secondN) == result)
+		try 
 		{
-			Game.getInstance().generateNewTask();
+			int result = Integer.parseInt(txtAnswear.getText());
 			
-			this.dispose();
+			if	((firstN * secondN) == result)
+			{
+				Game.getInstance().generateNewTask();
+				
+				this.dispose();
+			}
+			else
+			{
+				System.out.println("try again");
+			}
 		}
-		else
+		catch(NumberFormatException e)
 		{
-			System.out.println("try again");
+			System.out.println("invalid input");
 		}
 	}
 }
