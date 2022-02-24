@@ -132,13 +132,13 @@ public class Game implements GameListener
 		}
 		if (currentTaskIndex == GameConstants.GAME_QUESTIONS)
 		{
-			if (currentLevelIndex < levels.size())
+			if (currentLevelIndex < levels.size() - 1)
 			{
 				++currentLevelIndex;
 				
 				window.getContentPane().removeAll();
 				
-				mainWindow = new CongratilationWindow();
+				mainWindow = new CongratulationWindow();
 				
 				window.add(mainWindow);
 				
@@ -164,8 +164,16 @@ public class Game implements GameListener
 	@Override
 	public void end() 
 	{
-		System.out.println("congratulations!!!");
-		System.exit(0);
+		this.window.getContentPane().removeAll();
+		
+		this.mainWindow = new EndWindow();
+		this.window.add(mainWindow);
+		
+		this.window.pack();
+		this.window.repaint();
+		
+		this.currentLevelIndex = 0;
+		this.currentTaskIndex = -1;
 	}
 
 	@Override

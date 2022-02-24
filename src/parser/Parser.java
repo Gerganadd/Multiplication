@@ -30,12 +30,13 @@ public class Parser
 	        doc.getDocumentElement().normalize();
 	        
 	        NodeList nList = doc.getElementsByTagName("level");
-	        Element el = (Element) nList.item(0);
-	        boolean playerPictureOrientation = el.getAttribute("playerPictureOrientation").contains("left");
-	        
+	     
 	        for (int temp = 0; temp < nList.getLength(); temp++)
 	        {
 	        	Node nCategory = nList.item(temp);
+	        	boolean playerPictureOrientation = ((Element) nCategory)
+	        			.getAttribute("playerPictureOrientation")
+	        			.contains("left");
 	            
 		        if (nCategory.getNodeType() == Node.ELEMENT_NODE) 
 		        {
