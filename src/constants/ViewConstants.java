@@ -39,12 +39,13 @@ public class ViewConstants
 	public static final Color MAIN_WINDOW_TEXT_COLOR = Color.BLACK;
 	public static final Color MAIN_WINDOW_CURRECT_ANSWEARED_COLOR = Color.GREEN;
 	
+	//ConcratulationWindow
+	public static final String BTN_NEXT_LEVEL_TEXT = "Следващо ниво";
+	public static final String BTN_EXIT_TEXT = "Изход";
+	
 	//all
 	public static final Color BACKGROUND = null;
 	public static final LayoutManager LAYOUT = new FlowLayout();
-	
-	//public static final boolean LEFT_TO_RIGHT = true;
-	//public static final boolean RIGHT_TO_LEFT = !LEFT_TO_RIGHT;
 	
 	
 }

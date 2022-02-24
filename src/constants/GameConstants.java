@@ -10,4 +10,6 @@ public class GameConstants
 	public static final String GIRL_RIGHT_PICTURE_PATH = "src/resources/child-girl-right.png";
 	public static final String BOY_LEFT_PICTURE_PATH = "src/resources/child-boy-left.png";
 	public static final String BOY_RIGHT_PICTURE_PATH = "src/resources/child-boy-right.png";
+	
+	public static final String FIREWORKS_PICTURE_PATH = "src/resources/fireworks.png"; 
 }
