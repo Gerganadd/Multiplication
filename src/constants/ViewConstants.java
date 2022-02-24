@@ -43,6 +43,10 @@ public class ViewConstants
 	public static final String BTN_NEXT_LEVEL_TEXT = "Следващо ниво";
 	public static final String BTN_EXIT_TEXT = "Изход";
 	
+	//EndWindow
+	public static String END_WINDOW_TEXT = " ти реши всички задачи правилно!";
+	public static final String BTN_NEW_GAME_TEXT = "Нова игра";
+	
 	//all
 	public static final Color BACKGROUND = null;
 	public static final LayoutManager LAYOUT = new FlowLayout();
