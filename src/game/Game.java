@@ -101,6 +101,7 @@ public class Game implements GameListener
 	public void openGame() 
 	{
 		//this.player = new Player("Ema", GameConstants.GIRL_LEFT_PICTURE_PATH); //to-do remove
+		changePlayerPicturePosition();
 
 		window.getContentPane().removeAll();
 		
@@ -121,35 +122,50 @@ public class Game implements GameListener
 	}
 	
 	private void generateTask() // to-do: fix bugs
-	{
-		if (currentTaskIndex <= GameConstants.GAME_QUESTIONS) 
+	{	
+		if (currentTaskIndex < GameConstants.GAME_QUESTIONS)
 		{
-			if (currentTaskIndex < GameConstants.GAME_QUESTIONS)
-			{
-				int n = currentTaskIndex + 1;
-				Task t = new Task(ViewConstants.TASK_TITLE + n);
-			}
+			int n = currentTaskIndex + 1;
+			Task t = new Task(ViewConstants.TASK_TITLE + n);
+			
 			change();
-			currentTaskIndex++;
-			//System.out.println("task : " + currentTaskIndex);
 		}
 		if (currentTaskIndex == GameConstants.GAME_QUESTIONS)
 		{
-			//System.out.println("level " + currentLevelIndex);
 			if (currentLevelIndex < levels.size())
 			{
 				++currentLevelIndex;
-				//change player picture if it's necessary
-				openGame();
+				
+				window.getContentPane().removeAll();
+				
+				mainWindow = new CongratilationWindow();
+				
+				window.add(mainWindow);
+				
+				window.pack();
+				window.repaint();
+				
+				currentTaskIndex = -1;
 			}
-			end();
+			else
+			{
+				end();
+			}
 		}
+		
+		currentTaskIndex++;
+	}
+	
+	private void changePlayerPicturePosition()
+	{
+		this.player = new Player(player.getName(), player.getPicturePath());
 	}
 
 	@Override
 	public void end() 
 	{
 		System.out.println("congratulations!!!");
+		System.exit(0);
 	}
 
 	@Override
@@ -167,5 +183,19 @@ public class Game implements GameListener
 	public Level getCurrentLevel()
 	{
 		return levels.get(currentLevelIndex);
+	}
+	
+	public void newLevel()
+	{
+		if(currentLevelIndex == levels.size())
+		{
+			end();
+		}
+		else
+		{
+			changePlayerPicturePosition();
+			
+			openGame();
+		}
 	}
 }
