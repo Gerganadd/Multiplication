@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 
 import constants.ViewConstants;
 import game.Game;
-import windows.CongratilationWindow;
+import windows.CongratulationWindow;
 
 public class TestCongratilationWindow {
 
@@ -13,7 +13,7 @@ public class TestCongratilationWindow {
 		JFrame w = new JFrame();
 		w.setVisible(true);
 		Game.setSize(w, ViewConstants.D_INFORMATION_WINDOW);
-		w.add(new CongratilationWindow());
+		w.add(new CongratulationWindow());
 		w.pack();
 		w.repaint();
 

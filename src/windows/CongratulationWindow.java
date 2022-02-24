@@ -13,13 +13,13 @@ import constants.GameConstants;
 import constants.ViewConstants;
 import game.Game;
 
-public class CongratilationWindow extends JPanel
+public class CongratulationWindow extends JPanel
 {
 	private final LayoutManager LAYOUT = new FlowLayout(FlowLayout.CENTER);
 	private JButton btnNextLevel;
 	private JButton btnExit;
 	
-	public CongratilationWindow()
+	public CongratulationWindow()
 	{
 		super();
 		configurate();
@@ -38,7 +38,7 @@ public class CongratilationWindow extends JPanel
 		this.btnExit = new JButton(ViewConstants.BTN_EXIT_TEXT);
 		this.btnExit.addActionListener(x ->
 		{
-			Game.getInstance().end();
+			System.exit(0);
 		});
 		pnlButtons.add(btnExit);
 		
