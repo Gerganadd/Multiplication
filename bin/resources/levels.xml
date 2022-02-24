@@ -22,7 +22,7 @@
 		</coordinates>
 		
 	</level>
-	<level playerPictureOrientation ="left">
+	<level playerPictureOrientation ="right">
 	
 		<background>src/resources/level_2_background.png</background>
 		<element>src/resources/rose.png</element>

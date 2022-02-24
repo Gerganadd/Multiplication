@@ -25,8 +25,7 @@ public class Game implements GameListener
 
 	private static Game game = null;
 	
-	private static List<Level> levels = Parser.levels("src/resources/levels.xml");
-	//to-do : add path into GameConstants
+	private static List<Level> levels = Parser.levels(GameConstants.FILE_PATH);
 	
 	private Player player;
 	private JPanel mainWindow = null; // or gameWindow
@@ -121,7 +120,7 @@ public class Game implements GameListener
 		generateTask();
 	}
 	
-	private void generateTask() // to-do: fix bugs
+	private void generateTask() 
 	{	
 		if (currentTaskIndex < GameConstants.GAME_QUESTIONS)
 		{
