@@ -13,10 +13,11 @@ public class Level
 	
 	private Map<Integer, Coordinate> tasksCoordinates;
 	private Coordinate playerCoordinates;
+	private Coordinate taskCoordinates;
 	
 	
 	public Level(String backgroundPicturePath, String elementPicturePath, String defaultElementPicturePath,
-			String cupPicturePath, Coordinate playerCoordinates, 
+			String cupPicturePath, Coordinate playerCoordinates, Coordinate taskCoordinates,
 			boolean playerPictureOrientation, Map<Integer, Coordinate> tasksCoordinates)
 	{
 		if (backgroundPicturePath != null && !backgroundPicturePath.isBlank())
@@ -42,6 +43,11 @@ public class Level
 		if (playerCoordinates != null)
 		{
 			this.playerCoordinates = playerCoordinates;
+		}
+		
+		if (taskCoordinates != null)
+		{
+			this.taskCoordinates = taskCoordinates;
 		}
 		
 		this.playerPictureOrientation = playerPictureOrientation;
@@ -81,6 +87,11 @@ public class Level
 	public Coordinate getPlayerCoordinates()
 	{
 		return this.playerCoordinates;
+	}
+	
+	public Coordinate getTaskCoordinates()
+	{
+		return this.taskCoordinates;
 	}
 	
 	public boolean getPlayerPictureOrientation()

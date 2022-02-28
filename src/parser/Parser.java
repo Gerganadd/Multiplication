@@ -72,6 +72,12 @@ public class Parser
 		            
 		            Coordinate playerCoordinates = new Coordinate(xPlayer, yPlayer);
 		            
+		            Element eTask = (Element) eCategory.getElementsByTagName("taskCoordinates").item(0);
+		            int xTask = Integer.parseInt(eTask.getAttribute("x"));
+		            int yTask = Integer.parseInt(eTask.getAttribute("y"));
+		            
+		            Coordinate taskCoordinates = new Coordinate(xTask, yTask);
+		            
 		            NodeList coordinates = eCategory.getElementsByTagName("coordinate");
 		            
 		            Map<Integer, Coordinate> tasksCoordinates = new HashMap<>();
@@ -95,7 +101,8 @@ public class Parser
 		            }
 		            
 		            levels.add(new Level(backgroundPicturePath, elementPicturePath, defaultElementPicturePath,
-		            			cupPicturePath, playerCoordinates, playerPictureOrientation, tasksCoordinates));
+		            			cupPicturePath, playerCoordinates, taskCoordinates,
+		            			playerPictureOrientation, tasksCoordinates));
 		        }
 	        }
 		}

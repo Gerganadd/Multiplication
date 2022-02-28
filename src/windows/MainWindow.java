@@ -12,12 +12,11 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import constants.GameConstants;
 import constants.ViewConstants;
 import game.Game;
 import game_components.Coordinate;
 import game_components.Level;
-import game_components.Player;
+import game_components.Task;
 
 public class MainWindow extends JPanel
 {
@@ -90,6 +89,11 @@ public class MainWindow extends JPanel
         	this.g.drawImage(playerImage, level.getPlayerCoordinates().getX(), level.getPlayerCoordinates().getY(), this);
         }
         
+        Task task = Game.getInstance().getCurrentTask();
+        task.setBounds(level.getTaskCoordinates().getX(), level.getTaskCoordinates().getY(), 
+        		(int) (ViewConstants.D_TASK.getWidth()), (int) (ViewConstants.D_TASK.getHeight()));
+        this.add(task);
+        
         this.g.dispose();
         
     }
@@ -118,7 +122,7 @@ public class MainWindow extends JPanel
 	private void configurate() 
 	{
 		this.setVisible(true);
-		this.setLayout(ViewConstants.LAYOUT);
+		this.setLayout(null); 
 	}
 
 }

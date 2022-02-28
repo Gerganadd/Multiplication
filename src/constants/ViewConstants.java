@@ -12,9 +12,13 @@ import javax.swing.border.Border;
 public class ViewConstants 
 {
 	//Task
-	public static final Dimension D_TASK = new Dimension(60, 70);
-	public static final Dimension D_TASK_TXT_ANSWEAR = new Dimension(30, 20);
+	public static final Dimension D_TASK = new Dimension(220, 50);
+	public static final Dimension D_TASK_TXT_ANSWEAR = new Dimension(50, 20);
 	public static final String TASK_TITLE = "Задача №";
+	public static final String NO_INPUT_TEXT = "Въведи отговор!"; //change name
+	public static final String INVALID_INPUT_TEXT = "Въведи само число!";
+	public static final String WRONG_ANSWEAR_TEXT = "Помисли и опитай отново!";
+	public static final Color WRONG_ANSWEAR_COLOR = Color.RED;
 	
 	//InitializeWindow
 	public static final Dimension D_INFORMATION_WINDOW = new Dimension(320, 250); // same as a StartWindow 

@@ -12,6 +12,7 @@ import javax.swing.*;
 
 import constants.GameConstants;
 import constants.ViewConstants;
+import game_components.Coordinate;
 import game_components.Level;
 import game_components.Player;
 import game_components.Task;
@@ -31,8 +32,10 @@ public class Game implements GameListener
 	private JPanel mainWindow = null; // or gameWindow
 	private JFrame window;
 	
-	private int currentLevelIndex = 0;
+	private int currentLevelIndex = 1;
 	private int currentTaskIndex = 0;
+
+	private Task currentTask;
 	
 	private Game()
 	{
@@ -101,6 +104,10 @@ public class Game implements GameListener
 	{
 		//this.player = new Player("Ema", GameConstants.GIRL_LEFT_PICTURE_PATH); //to-do remove
 		changePlayerPicturePosition();
+		
+		int n = currentTaskIndex + 1;
+		this.currentTask = new Task(ViewConstants.TASK_TITLE + n);;
+		this.currentTaskIndex++;
 
 		window.getContentPane().removeAll();
 		
@@ -116,8 +123,6 @@ public class Game implements GameListener
 		//window.setLocation(x, y);
 		
 		window.setVisible(true);
-		
-		generateTask();
 	}
 	
 	private void generateTask() 
@@ -125,9 +130,9 @@ public class Game implements GameListener
 		if (currentTaskIndex < GameConstants.GAME_QUESTIONS)
 		{
 			int n = currentTaskIndex + 1;
-			Task t = new Task(ViewConstants.TASK_TITLE + n);
+			currentTask.change(ViewConstants.TASK_TITLE + n);
 			
-			change();
+			window.repaint();
 		}
 		if (currentTaskIndex == GameConstants.GAME_QUESTIONS)
 		{
@@ -176,8 +181,9 @@ public class Game implements GameListener
 	}
 
 	@Override
-	public void change() 
+	public void change() // to-do
 	{
+		generateTask();
 		this.mainWindow.repaint();
 	}
 
@@ -185,6 +191,11 @@ public class Game implements GameListener
 	public void generateNewTask() 
 	{
 		generateTask();
+	}
+	
+	public Task getCurrentTask()
+	{
+		return this.currentTask;
 	}
 	
 	public Level getCurrentLevel()
