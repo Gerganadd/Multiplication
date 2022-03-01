@@ -7,6 +7,7 @@
 		<cup>src/resources/trophy.png</cup>
 		
 		<playerCoordinates x="269" y="448"/>
+		<taskCoordinates x="30" y="558"/>
 		
 		<coordinates>
 			<coordinate task="1" x="149" y="452"/>
@@ -30,6 +31,7 @@
 		<cup>src/resources/trophy.png</cup>
 		
 		<playerCoordinates x="30" y="305"/>
+		<taskCoordinates x="360" y="488"/>
 		
 		<coordinates>
 			<coordinate task="1" x="135" y="383"/>
