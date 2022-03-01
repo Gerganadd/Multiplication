@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.LayoutManager;
 import java.awt.Toolkit;
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +23,7 @@ import windows.*;
 
 public class Game implements GameListener
 {
-	private final LayoutManager LAYOUT = new FlowLayout();
+	private static final LayoutManager WINDOW_LAYOUT = new FlowLayout(FlowLayout.CENTER, 0, 0);
 
 	private static Game game = null;
 	
@@ -39,10 +40,12 @@ public class Game implements GameListener
 	
 	private Game()
 	{
+		System.setProperty("file.encoding", "UTF-8");
+		
 		window = new JFrame();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setLayout(LAYOUT);
-		//window.setResizable(false);
+		window.setLayout(WINDOW_LAYOUT);
+		window.setResizable(false);
 	}
 	
 	public static Game getInstance()
@@ -78,7 +81,7 @@ public class Game implements GameListener
 		int x = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - window.size().getWidth()) / 2;
 		int y = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - window.size().getHeight()) / 2;
 		
-		//window.setLocation(x, y);
+		window.setLocation(x, y);
 		
 		window.setVisible(true);
 
@@ -120,7 +123,7 @@ public class Game implements GameListener
 		int x = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - window.size().getWidth()) / 2;
 		int y = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - window.size().getHeight()) / 2;
 		
-		//window.setLocation(x, y);
+		window.setLocation(x, y);
 		
 		window.setVisible(true);
 	}
@@ -181,7 +184,7 @@ public class Game implements GameListener
 	}
 
 	@Override
-	public void change() // to-do
+	public void change() 
 	{
 		generateTask();
 		this.mainWindow.repaint();
