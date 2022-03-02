@@ -53,6 +53,10 @@ public class Player
 		{
 			this.name = name;
 		}
+		else
+		{
+			this.name = GameConstants.DEFAULT_PLAYER_NAME;
+		}
 	}
 	
 	public String getPicturePath() 
