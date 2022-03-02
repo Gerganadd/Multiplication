@@ -1,6 +1,8 @@
 package windows;
 
 import java.awt.FlowLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -23,6 +25,8 @@ public class InitializeWindow extends JPanel
 	private boolean isGirlPicClicked = false;
 	private boolean isBoyPicClicked = false;
 	
+	private JTextField txtName;
+	
 	public InitializeWindow()
 	{
 		super();
@@ -38,16 +42,25 @@ public class InitializeWindow extends JPanel
 		JLabel lblText1 = new JLabel(ViewConstants.ININTIALIZE_WINDOW_TEXT1);
 		this.add(lblText1);
 		
-		JTextField txtName = new JTextField();
+		txtName = new JTextField();
+		txtName.addKeyListener(new KeyAdapter() 
+		{
+			@Override
+			public void keyPressed(KeyEvent arg0) 
+			{
+				if (arg0.getKeyCode() == KeyEvent.VK_ENTER) 
+				{
+					action();
+				}
+			}
+		});
 		Game.setSize(txtName, ViewConstants.ININTIALIZE_WINDOW_D_TXT_NAME);
 		this.add(txtName);
 		
 		JButton btnSave = new JButton(ViewConstants.ININTIALIZE_WINDOW_BTN_TEXT);
 		btnSave.addActionListener(x -> 
 		{
-			Game.getInstance().setPlayer(
-					new Player(txtName.getText(), 
-							isGirlPicClicked? girlPicturePath : boyPicturePath));
+			action();
 		});
 		this.add(btnSave);
 	
@@ -60,6 +73,13 @@ public class InitializeWindow extends JPanel
 		this.setLayout(ViewConstants.LAYOUT);
 		
 		Game.setSize(this, ViewConstants.D_INFORMATION_WINDOW);
+	}
+	
+	private void action()
+	{
+		Game.getInstance().setPlayer(
+				new Player(txtName.getText(), 
+						isGirlPicClicked? girlPicturePath : boyPicturePath));
 	}
 	
 	private void formatPictures(JPanel pnlPictures)
