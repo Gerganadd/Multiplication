@@ -15,4 +15,6 @@ public class GameConstants
 	
 	public static final String FIREWORKS_PICTURE_PATH = "src/resources/fireworks.png"; 
 	
+	public static final String DEFAULT_PLAYER_NAME = "Играч 1";
+	
 }

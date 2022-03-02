@@ -15,7 +15,7 @@ public class ViewConstants
 	public static final Dimension D_TASK = new Dimension(220, 50);
 	public static final Dimension D_TASK_TXT_ANSWEAR = new Dimension(50, 20);
 	public static final String TASK_TITLE = "Задача №";
-	public static final String NO_INPUT_TEXT = "Въведи отговор!"; //change name
+	public static final String NO_INPUT_TEXT = "Въведи отговор!"; //to-do: change name
 	public static final String INVALID_INPUT_TEXT = "Въведи само число!";
 	public static final String WRONG_ANSWEAR_TEXT = "Помисли и опитай отново!";
 	public static final Color WRONG_ANSWEAR_COLOR = Color.RED;
@@ -24,8 +24,8 @@ public class ViewConstants
 	public static final Dimension D_INFORMATION_WINDOW = new Dimension(320, 250); // same as a StartWindow 
 	public static final Dimension ININTIALIZE_WINDOW_D_TXT_NAME = new Dimension(100, 20);
 	
-	public static final String ININTIALIZE_WINDOW_TEXT = "Избери герой:"; //change name
-	public static final String ININTIALIZE_WINDOW_TEXT1 = "Въведи име:"; //change name
+	public static final String ININTIALIZE_WINDOW_TEXT = "Избери герой:"; //to-do: change name
+	public static final String ININTIALIZE_WINDOW_TEXT1 = "Въведи име:"; //to-do: change name
 	public static final String ININTIALIZE_WINDOW_BTN_TEXT = "Запази";
 	
 	public static final Border ININTIALIZE_WINDOW_DEFAULT_BORDER = BorderFactory.createLineBorder(Color.black);
@@ -36,7 +36,7 @@ public class ViewConstants
 	public static final Dimension D_START_WINDOW_PNL_BOTTOM = new Dimension(D_INFORMATION_WINDOW.width, (int) (D_INFORMATION_WINDOW.height * 0.2));
 	public static final Dimension D_START_WINDOW_PNL_TEXT = new Dimension((int) (D_INFORMATION_WINDOW.getWidth() / 2), D_INFORMATION_WINDOW.height - D_START_WINDOW_PNL_BOTTOM.height);
 
-	public static String START_WINDOW_TEXT = " реши вярно всички задачи и преведи своя герой по пътя към света на забавленията";
+	public static String START_WINDOW_TEXT = ", реши вярно всички задачи и преведи своя герой по пътя към света на забавленията";
 	
 	//MainWindow
 	public static final Color MAIN_WINDOW_DEFAULT_COLOR = Color.GRAY;
@@ -44,11 +44,12 @@ public class ViewConstants
 	public static final Color MAIN_WINDOW_CURRECT_ANSWEARED_COLOR = Color.GREEN;
 	
 	//ConcratulationWindow
+	public static final String CONGRATULATION_WINDOW_TEXT = "Поздравления, ти реши всички задачи от това ниво!";
 	public static final String BTN_NEXT_LEVEL_TEXT = "Следващо ниво";
 	public static final String BTN_EXIT_TEXT = "Изход";
 	
 	//EndWindow
-	public static String END_WINDOW_TEXT = " ти реши всички задачи правилно!";
+	public static String END_WINDOW_TEXT = ", ти реши всички задачи правилно!";
 	public static final String BTN_NEW_GAME_TEXT = "Нова игра";
 	
 	//all
