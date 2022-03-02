@@ -49,16 +49,6 @@ public class MainWindow extends JPanel
 			Dimension d = new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight());
 			Game.setSize(this, d);
 			
-			//to-do: remove mouseListener
-			this.addMouseListener(new MouseAdapter()
-			{
-				@Override
-				public void mouseClicked(MouseEvent arg0) 
-				{
-					System.out.println(arg0.getLocationOnScreen());
-				}
-			});
-			
 		} 
 		catch (IOException e) 
 		{

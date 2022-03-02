@@ -33,7 +33,7 @@ public class Game implements GameListener
 	private JPanel mainWindow = null; // or gameWindow
 	private JFrame window;
 	
-	private int currentLevelIndex = 1;
+	private int currentLevelIndex = 0;
 	private int currentTaskIndex = 0;
 
 	private Task currentTask;

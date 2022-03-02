@@ -36,7 +36,7 @@ public class EndWindow extends JPanel
 			pnlText.setLayout(new FlowLayout(FlowLayout.LEFT));
 			Game.setSize(pnlText, ViewConstants.D_START_WINDOW_PNL_TEXT);
 			
-			String text = "Поздравления " + player.getName() + ViewConstants.END_WINDOW_TEXT;
+			String text = "Поздравления, " + player.getName() + ViewConstants.END_WINDOW_TEXT;
 			setText(pnlText, text);
 			pnlInformation.add(pnlText);
 		} 
@@ -51,7 +51,6 @@ public class EndWindow extends JPanel
 		JButton btnNewGame = new JButton(ViewConstants.BTN_NEW_GAME_TEXT);
 		btnNewGame.addActionListener(x ->
 		{
-			//to-do: level = 0;
 			Game.getInstance().openGame();
 		});
 		pnlButtons.add(btnNewGame);
@@ -85,6 +84,5 @@ public class EndWindow extends JPanel
 		this.setBackground(ViewConstants.BACKGROUND);
 		this.setLayout(LAYOUT);
 	}
-	
 	
 }
