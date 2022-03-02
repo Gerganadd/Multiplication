@@ -24,6 +24,9 @@ public class CongratulationWindow extends JPanel
 		super();
 		configurate();
 		
+		JLabel lblCongratulation = new JLabel(ViewConstants.CONGRATULATION_WINDOW_TEXT);
+		this.add(lblCongratulation);
+		
 		formatPicture();
 		
 		JPanel pnlButtons = new JPanel();
